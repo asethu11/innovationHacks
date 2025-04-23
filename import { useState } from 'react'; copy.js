@@ -40,7 +40,7 @@ export default function MeetingLive() {
       <div className="bg-white p-3 flex justify-between items-center rounded-xl shadow-sm border">
         <div className="flex items-center gap-3 text-sm">
           <span className="text-red-500 font-semibold">🔴 LIVE</span>
-          <span className="text-green-600">😊 Engaged</span>
+          <span className="text-green-600"> Engaged</span>
         </div>
         <div className="text-sm flex items-center gap-2">
           <Clock className="w-4 h-4" /> {formatTime(timer)}
@@ -55,6 +55,7 @@ export default function MeetingLive() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mt-6">
         {/* 💬 Transcript */}
         <div className="lg:col-span-1 bg-white rounded-xl p-4 shadow-sm border h-[70vh] flex flex-col">
+          <h2 className="text-md font-semibold mb-2">Live Transcript</h2>
           <div className="mb-2 flex items-center gap-2">
             <Search className="w-4 h-4 text-gray-500" />
             <input type="text" placeholder="Search transcript..." className="w-full px-2 py-1 text-sm border rounded-md" />
@@ -77,10 +78,8 @@ export default function MeetingLive() {
             <ul className="space-y-2 text-sm">
               {agendaItems.map((item, i) => (
                 <li key={i} className="flex items-center gap-2">
-                  {item.status === 'done' && '✅'}
-                  {item.status === 'in-progress' && '⏳'}
-                  {item.status === 'upcoming' && '➡️'}
-                  <span>{item.title}</span>
+                  <input type="checkbox" checked={item.status === 'done'} readOnly className="form-checkbox text-blue-600" />
+                  <span className={item.status === 'done' ? 'line-through text-gray-400' : ''}>{item.title}</span>
                 </li>
               ))}
             </ul>
